@@ -1,0 +1,11 @@
+.git/
+.github/
+.env
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.terraform/
+*.tfstate
+dist/

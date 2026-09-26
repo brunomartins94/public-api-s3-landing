@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api-s3-landing"
+version = "0.1.0"
+description = "Incremental paginated public API ingestion to Amazon S3"
+requires-python = ">=3.11"
+dependencies = [
+  "boto3>=1.35,<2.0",
+  "python-dotenv>=1.0,<2.0",
+  "requests>=2.32,<3.0"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<9.0", "pytest-cov>=6.0,<7.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.setuptools.packages.find]
+where = ["src"]

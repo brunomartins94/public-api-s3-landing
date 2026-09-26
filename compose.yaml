@@ -1,0 +1,36 @@
+services:
+  pipeline:
+    build:
+      context: .
+      target: development
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - ./:/app
+    entrypoint: ["python", "-m", "api_s3_landing.pipeline"]
+
+  test:
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./:/app
+    command: ["pytest"]
+
+  terraform:
+    image: hashicorp/terraform:1.9
+    working_dir: /workspace
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - ./:/workspace
+    entrypoint: ["terraform"]
+
+  aws:
+    image: public.ecr.aws/aws-cli/aws-cli:latest
+    env_file:
+      - path: .env
+        required: false
+    entrypoint: ["aws"]
